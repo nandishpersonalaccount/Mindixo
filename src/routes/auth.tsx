@@ -20,7 +20,7 @@ function Auth() {
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (user) navigate({ to: "/admin" });
+    if (user) navigate({ to: "/lordshivstoremanage" });
   }, [user, navigate]);
 
   async function submit(e: React.FormEvent) {
@@ -45,7 +45,7 @@ function Auth() {
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        await navigate({ to: "/admin" });
+        await navigate({ to: "/lordshivstoremanage" });
       }
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "Sign in failed");

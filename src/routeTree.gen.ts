@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -27,7 +28,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WishlistRouteImport } from './routes/wishlist'
-import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedLordshivstoremanageRouteImport } from './routes/_authenticated/lordshivstoremanage'
 import { Route as BookSlugRouteImport } from './routes/book.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -42,6 +43,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -119,11 +125,12 @@ const WishlistRoute = WishlistRouteImport.update({
   path: '/wishlist',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedLordshivstoremanageRoute =
+  AuthenticatedLordshivstoremanageRouteImport.update({
+    id: '/lordshivstoremanage',
+    path: '/lordshivstoremanage',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const BookSlugRoute = BookSlugRouteImport.update({
   id: '/book/$slug',
   path: '/book/$slug',
@@ -133,6 +140,7 @@ const BookSlugRoute = BookSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -148,12 +156,13 @@ export interface FileRoutesByFullPath {
   '/store': typeof StoreRoute
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
-  '/admin': typeof AuthenticatedAdminRoute
+  '/lordshivstoremanage': typeof AuthenticatedLordshivstoremanageRoute
   '/book/$slug': typeof BookSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -169,7 +178,7 @@ export interface FileRoutesByTo {
   '/store': typeof StoreRoute
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
-  '/admin': typeof AuthenticatedAdminRoute
+  '/lordshivstoremanage': typeof AuthenticatedLordshivstoremanageRoute
   '/book/$slug': typeof BookSlugRoute
 }
 export interface FileRoutesById {
@@ -177,6 +186,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -192,7 +202,7 @@ export interface FileRoutesById {
   '/store': typeof StoreRoute
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/lordshivstoremanage': typeof AuthenticatedLordshivstoremanageRoute
   '/book/$slug': typeof BookSlugRoute
 }
 export interface FileRouteTypes {
@@ -200,6 +210,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/auth'
     | '/cart'
     | '/checkout'
@@ -215,12 +226,13 @@ export interface FileRouteTypes {
     | '/store'
     | '/terms'
     | '/wishlist'
-    | '/admin'
+    | '/lordshivstoremanage'
     | '/book/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/admin'
     | '/auth'
     | '/cart'
     | '/checkout'
@@ -236,13 +248,14 @@ export interface FileRouteTypes {
     | '/store'
     | '/terms'
     | '/wishlist'
-    | '/admin'
+    | '/lordshivstoremanage'
     | '/book/$slug'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/about'
+    | '/admin'
     | '/auth'
     | '/cart'
     | '/checkout'
@@ -258,7 +271,7 @@ export interface FileRouteTypes {
     | '/store'
     | '/terms'
     | '/wishlist'
-    | '/_authenticated/admin'
+    | '/_authenticated/lordshivstoremanage'
     | '/book/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -266,6 +279,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
@@ -305,6 +319,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -412,11 +433,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WishlistRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/admin': {
-      id: '/_authenticated/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+    '/_authenticated/lordshivstoremanage': {
+      id: '/_authenticated/lordshivstoremanage'
+      path: '/lordshivstoremanage'
+      fullPath: '/lordshivstoremanage'
+      preLoaderRoute: typeof AuthenticatedLordshivstoremanageRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/book/$slug': {
@@ -430,11 +451,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedLordshivstoremanageRoute: typeof AuthenticatedLordshivstoremanageRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedLordshivstoremanageRoute: AuthenticatedLordshivstoremanageRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -444,6 +465,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
