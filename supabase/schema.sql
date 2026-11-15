@@ -150,7 +150,7 @@ create policy settings_admin on public.store_settings
 
 -- Ensure row 1 exists in store_settings
 insert into public.store_settings (id, intro, announcement)
-values (1, 'A little less noise. A little more reading.', 'Free digital delivery on all orders')
+values (1, 'A little less noise. A little more reading.', '')
 on conflict (id) do nothing;
 
 -- 8. Storage Buckets Setup
