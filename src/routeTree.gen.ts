@@ -22,13 +22,14 @@ import { Route as DeliveryRouteImport } from './routes/delivery'
 import { Route as DmcaRouteImport } from './routes/dmca'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GenresRouteImport } from './routes/genres'
+import { Route as LordshivstoremanageRouteImport } from './routes/lordshivstoremanage'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundRouteImport } from './routes/refund'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WishlistRouteImport } from './routes/wishlist'
-import { Route as AuthenticatedLordshivstoremanageRouteImport } from './routes/_authenticated/lordshivstoremanage'
+import { Route as AuthenticatedLordshivstoremanagenmentRouteImport } from './routes/_authenticated/lordshivstoremanagenment'
 import { Route as BookSlugRouteImport } from './routes/book.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -95,6 +96,11 @@ const GenresRoute = GenresRouteImport.update({
   path: '/genres',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LordshivstoremanageRoute = LordshivstoremanageRouteImport.update({
+  id: '/lordshivstoremanage',
+  path: '/lordshivstoremanage',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -125,10 +131,10 @@ const WishlistRoute = WishlistRouteImport.update({
   path: '/wishlist',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedLordshivstoremanageRoute =
-  AuthenticatedLordshivstoremanageRouteImport.update({
-    id: '/lordshivstoremanage',
-    path: '/lordshivstoremanage',
+const AuthenticatedLordshivstoremanagenmentRoute =
+  AuthenticatedLordshivstoremanagenmentRouteImport.update({
+    id: '/lordshivstoremanagenment',
+    path: '/lordshivstoremanagenment',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const BookSlugRoute = BookSlugRouteImport.update({
@@ -150,13 +156,14 @@ export interface FileRoutesByFullPath {
   '/dmca': typeof DmcaRoute
   '/faq': typeof FaqRoute
   '/genres': typeof GenresRoute
+  '/lordshivstoremanage': typeof LordshivstoremanageRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
-  '/lordshivstoremanage': typeof AuthenticatedLordshivstoremanageRoute
+  '/lordshivstoremanagenment': typeof AuthenticatedLordshivstoremanagenmentRoute
   '/book/$slug': typeof BookSlugRoute
 }
 export interface FileRoutesByTo {
@@ -172,13 +179,14 @@ export interface FileRoutesByTo {
   '/dmca': typeof DmcaRoute
   '/faq': typeof FaqRoute
   '/genres': typeof GenresRoute
+  '/lordshivstoremanage': typeof LordshivstoremanageRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
-  '/lordshivstoremanage': typeof AuthenticatedLordshivstoremanageRoute
+  '/lordshivstoremanagenment': typeof AuthenticatedLordshivstoremanagenmentRoute
   '/book/$slug': typeof BookSlugRoute
 }
 export interface FileRoutesById {
@@ -196,13 +204,14 @@ export interface FileRoutesById {
   '/dmca': typeof DmcaRoute
   '/faq': typeof FaqRoute
   '/genres': typeof GenresRoute
+  '/lordshivstoremanage': typeof LordshivstoremanageRoute
   '/privacy': typeof PrivacyRoute
   '/refund': typeof RefundRoute
   '/reset-password': typeof ResetPasswordRoute
   '/store': typeof StoreRoute
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
-  '/_authenticated/lordshivstoremanage': typeof AuthenticatedLordshivstoremanageRoute
+  '/_authenticated/lordshivstoremanagenment': typeof AuthenticatedLordshivstoremanagenmentRoute
   '/book/$slug': typeof BookSlugRoute
 }
 export interface FileRouteTypes {
@@ -220,13 +229,14 @@ export interface FileRouteTypes {
     | '/dmca'
     | '/faq'
     | '/genres'
+    | '/lordshivstoremanage'
     | '/privacy'
     | '/refund'
     | '/reset-password'
     | '/store'
     | '/terms'
     | '/wishlist'
-    | '/lordshivstoremanage'
+    | '/lordshivstoremanagenment'
     | '/book/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -242,13 +252,14 @@ export interface FileRouteTypes {
     | '/dmca'
     | '/faq'
     | '/genres'
+    | '/lordshivstoremanage'
     | '/privacy'
     | '/refund'
     | '/reset-password'
     | '/store'
     | '/terms'
     | '/wishlist'
-    | '/lordshivstoremanage'
+    | '/lordshivstoremanagenment'
     | '/book/$slug'
   id:
     | '__root__'
@@ -265,13 +276,14 @@ export interface FileRouteTypes {
     | '/dmca'
     | '/faq'
     | '/genres'
+    | '/lordshivstoremanage'
     | '/privacy'
     | '/refund'
     | '/reset-password'
     | '/store'
     | '/terms'
     | '/wishlist'
-    | '/_authenticated/lordshivstoremanage'
+    | '/_authenticated/lordshivstoremanagenment'
     | '/book/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -289,6 +301,7 @@ export interface RootRouteChildren {
   DmcaRoute: typeof DmcaRoute
   FaqRoute: typeof FaqRoute
   GenresRoute: typeof GenresRoute
+  LordshivstoremanageRoute: typeof LordshivstoremanageRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundRoute: typeof RefundRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -391,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GenresRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lordshivstoremanage': {
+      id: '/lordshivstoremanage'
+      path: '/lordshivstoremanage'
+      fullPath: '/lordshivstoremanage'
+      preLoaderRoute: typeof LordshivstoremanageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -433,11 +453,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WishlistRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/lordshivstoremanage': {
-      id: '/_authenticated/lordshivstoremanage'
-      path: '/lordshivstoremanage'
-      fullPath: '/lordshivstoremanage'
-      preLoaderRoute: typeof AuthenticatedLordshivstoremanageRouteImport
+    '/_authenticated/lordshivstoremanagenment': {
+      id: '/_authenticated/lordshivstoremanagenment'
+      path: '/lordshivstoremanagenment'
+      fullPath: '/lordshivstoremanagenment'
+      preLoaderRoute: typeof AuthenticatedLordshivstoremanagenmentRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/book/$slug': {
@@ -451,11 +471,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedLordshivstoremanageRoute: typeof AuthenticatedLordshivstoremanageRoute
+  AuthenticatedLordshivstoremanagenmentRoute: typeof AuthenticatedLordshivstoremanagenmentRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedLordshivstoremanageRoute: AuthenticatedLordshivstoremanageRoute,
+  AuthenticatedLordshivstoremanagenmentRoute:
+    AuthenticatedLordshivstoremanagenmentRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -475,6 +496,7 @@ const rootRouteChildren: RootRouteChildren = {
   DmcaRoute: DmcaRoute,
   FaqRoute: FaqRoute,
   GenresRoute: GenresRoute,
+  LordshivstoremanageRoute: LordshivstoremanageRoute,
   PrivacyRoute: PrivacyRoute,
   RefundRoute: RefundRoute,
   ResetPasswordRoute: ResetPasswordRoute,
