@@ -1,0 +1,3 @@
+import {createFileRoute} from "@tanstack/react-router";
+import {pageMeta} from "@/lib/meta";
+export const Route=createFileRoute("/faq")({head:()=>pageMeta("FAQ","Mindixo ebook store questions."),component:()=> <section className="mx-auto max-w-3xl px-6 py-20"><h1 className="text-4xl font-semibold">Frequently asked questions</h1><h2 className="mt-8 text-xl">Are purchases available?</h2><p className="mt-3 text-muted-foreground">Not yet. Payments and ebook delivery must be connected before purchases open.</p><h2 className="mt-8 text-xl">Are these physical books?</h2><p className="mt-3 text-muted-foreground">Mindixo is a digital-only ebook store.</p></section>});

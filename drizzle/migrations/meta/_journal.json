@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1794243698138,
+      "tag": "0000_store_catalog_and_admin",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794243733054,
+      "tag": "0001_store_upload_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794243954444,
+      "tag": "0002_restrict_role_lookup",
+      "breakpoints": true
+    }
+  ]
+}

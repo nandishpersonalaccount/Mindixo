@@ -1,0 +1,3 @@
+import { createFileRoute,Link } from "@tanstack/react-router";
+import { pageMeta } from "@/lib/meta";
+export const Route=createFileRoute("/checkout")({validateSearch:(s:Record<string,unknown>):{coupon?:string|undefined}=>({coupon:typeof s["coupon"]==="string"?s["coupon"]:undefined}),head:()=>pageMeta("Checkout","Mindixo checkout availability."),component:()=> <div className="mx-auto max-w-3xl px-6 py-24"><p className="eyebrow">Checkout</p><h1 className="mt-4 text-4xl font-semibold">Purchases are not open yet.</h1><p className="mt-5 text-muted-foreground">Payments and secure ebook delivery have not been connected. No payment will be taken.</p><Link to="/store" className="mt-8 inline-block underline">Return to the store ↗</Link></div>});

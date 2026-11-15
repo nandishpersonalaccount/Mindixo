@@ -1,0 +1,2 @@
+import {useStore} from "@/lib/store";
+export function StoreContent({field,title}:{field:"about"|"privacy"|"terms"|"refund"|"cookies"|"dmca"|"delivery";title:string}){const {settings}=useStore();return <section className="mx-auto max-w-3xl px-6 py-20"><p className="eyebrow">Mindixo</p><h1 className="mt-4 text-4xl font-semibold">{title}</h1><div className="mt-8 whitespace-pre-wrap leading-relaxed text-muted-foreground">{settings?.[field]||"Details have not been published yet."}</div></section>}

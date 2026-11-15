@@ -1,0 +1,2 @@
+create policy cover_read on storage.objects for select using(bucket_id='store-covers');
+create policy admin_storage on storage.objects for all to authenticated using(bucket_id in ('store-covers','ebook-files') and public.has_role(auth.uid(),'admin')) with check(bucket_id in ('store-covers','ebook-files') and public.has_role(auth.uid(),'admin'));

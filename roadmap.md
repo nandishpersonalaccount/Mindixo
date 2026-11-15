@@ -1,0 +1,12 @@
+# Store redesign
+- [x] Match the uploaded photo-led homepage and mint price-filter menu; verified mobile/desktop navigation, price selection, Done, reset and search; six tests passed.
+- [x] Keep four menu links, replace main image, overlay the header initially and change to a visible solid header on scroll; verified at desktop and two mobile widths with no runtime errors.
+- [x] Replace icon branding with spaced Mindixo text, add navigation menu, refresh main photo and show three requested coming-soon book previews; verified menu-to-shop navigation and existing page test.
+- [x] Match the uploaded Kepler storefront design for Mindixo ebooks while retaining current catalog and management; verified home, shop filters and cart at desktop and two phone widths, with five tests passing.
+- [x] Replace the homepage sculpture, remove the yellow strip, and simplify the logo to M I N D I X O.
+- [x] Replace the dark store with a simple white/ink/lime design and new typography.
+- [x] Remove fictional catalog, reviews, statistics, offers and simulated success flows.
+- [x] Connect real products, categories and store content to Lovable Cloud.
+- [x] Add secure admin access and product/category/store management.
+- [x] Verify storefront, mobile layout, protected sign-in redirect and five tests.
+- [ ] Verify signed-in management: blocked until the owner creates/signs into an account and receives an explicit admin role.
