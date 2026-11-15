@@ -13,3 +13,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 }
 export const useAuth = () => useContext(AuthContext);
+
+export async function signInWithGoogle(redirectTo?: string) {
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const target = redirectTo
+    ? redirectTo.startsWith("http")
+      ? redirectTo
+      : `${origin}${redirectTo}`
+    : `${origin}/checkout`;
+
+  return supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: target,
+    },
+  });
+}
+
+export async function signOut() {
+  return supabase.auth.signOut();
+}
