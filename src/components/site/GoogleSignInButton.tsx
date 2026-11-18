@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { signInWithGoogle } from "@/lib/auth";
 
-export function GoogleIcon({ className = "h-4 w-4" }: { className?: string }) {
+export function GoogleIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className={className}>
       <path
@@ -49,7 +48,7 @@ export function GoogleSignInButton({
       if (error) {
         let msg = error.message;
         if (msg.toLowerCase().includes("provider is not enabled") || msg.toLowerCase().includes("unsupported provider")) {
-          msg = "Google Sign-In is not enabled yet in your Supabase project. Please enable Google under Authentication > Providers in your Supabase dashboard.";
+          msg = "Google Sign-In is not enabled yet in your Supabase project. Enable Google under Authentication > Providers in Supabase.";
         }
         setErr(msg);
         if (onError) onError(msg);
@@ -64,19 +63,18 @@ export function GoogleSignInButton({
   };
 
   return (
-    <div className="w-full space-y-2">
-      <Button
+    <div className="w-full space-y-2.5">
+      <button
         type="button"
-        variant="outline"
         onClick={handleClick}
         disabled={busy}
-        className={`w-full h-12 flex items-center justify-center gap-3 font-medium transition-colors hover:bg-neutral-800 ${className}`}
+        className={`flex h-12 w-full cursor-pointer items-center justify-center gap-3 rounded-xl bg-white px-5 text-sm font-semibold text-[#111418] shadow-sm transition-all hover:bg-neutral-100 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:text-base ${className}`}
       >
-        <GoogleIcon className="h-5 w-5" />
-        {busy ? "Connecting to Google…" : (children ?? "Continue with Google")}
-      </Button>
+        <GoogleIcon className="h-5 w-5 shrink-0" />
+        <span>{busy ? "Redirecting to Google…" : (children ?? "Continue with Google")}</span>
+      </button>
       {err && (
-        <p className="rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive">
+        <p role="alert" className="rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive">
           {err}
         </p>
       )}
