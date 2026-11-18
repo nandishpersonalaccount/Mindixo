@@ -45,6 +45,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 export const useAuth = () => useContext(AuthContext).user;
 export const useAuthState = () => useContext(AuthContext);
 
+export const GOOGLE_CLIENT_ID =
+  (import.meta.env["VITE_GOOGLE_CLIENT_ID"] as string | undefined)?.trim() ||
+  "895484957618-nnb504oqdo3crva4g0pb64brca1doj2d.apps.googleusercontent.com";
+
+export async function signInWithGoogleIdToken(token: string, nonce: string) {
+  return supabase.auth.signInWithIdToken({
+    provider: "google",
+    token,
+    nonce,
+  });
+}
+
 export async function signInWithGoogle(redirectTo?: string) {
   const origin = typeof window !== "undefined" ? window.location.origin : "";
   const target = redirectTo
@@ -65,5 +77,9 @@ export async function signInWithGoogle(redirectTo?: string) {
 }
 
 export async function signOut() {
+  if (typeof window !== "undefined") {
+    const g = (window as Window & { google?: { accounts?: { id?: { disableAutoSelect?: () => void } } } }).google;
+    g?.accounts?.id?.disableAutoSelect?.();
+  }
   return supabase.auth.signOut();
 }
